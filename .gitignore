@@ -1,0 +1,27 @@
+# Environment & secrets — never commit these
+.env
+.env.*
+*.env
+*.key
+*.pem
+*credentials*
+*secret*
+
+# Local Claude Code settings
+settings.local.json
+
+# macOS clutter
+.DS_Store
+**/.DS_Store
+
+# Zip/binary archives
+*.zip
+
+# Node (if added later)
+node_modules/
+npm-debug.log*
+
+# Python (if added later)
+__pycache__/
+*.pyc
+.venv/

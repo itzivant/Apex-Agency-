@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Website Discovery Form — Apex Marketing Agency</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:        #0A1628;
+      --navy-mid:    #132040;
+      --blue:        #2563EB;
+      --blue-light:  #3B82F6;
+      --blue-pale:   #EFF6FF;
+      --white:       #FFFFFF;
+      --gray-50:     #F8FAFC;
+      --gray-100:    #F1F5F9;
+      --gray-200:    #E2E8F0;
+      --gray-400:    #94A3B8;
+      --gray-600:    #475569;
+      --gray-700:    #334155;
+      --gray-900:    #0F172A;
+      --red:         #EF4444;
+      --green-bg:    #D1FAE5;
+      --green-border:#6EE7B7;
+      --green-text:  #065F46;
+      --radius:      8px;
+      --radius-lg:   12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-100);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--navy);
+      padding: 44px 24px 52px;
+      text-align: center;
+    }
+    .header-logo {
+      display: block;
+    }
+    .header h1 {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .header-sub {
+      font-size: 15px;
+      color: var(--gray-400);
+      max-width: 520px;
+      margin: 0 auto 20px;
+      line-height: 1.6;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(37,99,235,0.2);
+      color: var(--blue-light);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(59,130,246,0.35);
+    }
+
+    /* ── Progress bar ── */
+    .progress-wrap {
+      background: var(--navy);
+      padding: 0 24px 28px;
+    }
+    .progress-track {
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      height: 5px;
+      max-width: 760px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .progress-fill {
+      background: var(--blue);
+      height: 100%;
+      width: 0%;
+      border-radius: 4px;
+      transition: width 0.35s ease;
+    }
+
+    /* ── Container ── */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+    }
+
+    /* ── Section card ── */
+    .section {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .section-num {
+      background: var(--blue);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 800;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      color: var(--white);
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .section-body {
+      padding: 26px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* ── Two-column grid ── */
+    .row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 520px) {
+      .row-2 { grid-template-columns: 1fr; }
+      .section-body { padding: 20px 18px; }
+    }
+
+    /* ── Field wrapper ── */
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .field label {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-700);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── All inputs & textareas ── */
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="date"],
+    textarea {
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 10px 13px;
+      font-size: 14px;
+      color: var(--gray-900);
+      background: var(--gray-50);
+      outline: none;
+      width: 100%;
+      font-family: inherit;
+      line-height: 1.5;
+      transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+      resize: vertical;
+    }
+    input:focus,
+    textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+      background: var(--white);
+    }
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--gray-400);
+    }
+    textarea          { min-height: 90px; }
+    textarea.short    { min-height: 68px; }
+    textarea.tall     { min-height: 116px; }
+
+    /* ── Question block ── */
+    .q-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .q-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gray-900);
+      line-height: 1.4;
+    }
+    .q-num {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-right: 6px;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+    .hint {
+      font-size: 12px;
+      color: var(--gray-400);
+      font-style: italic;
+      line-height: 1.45;
+      margin-top: -2px;
+    }
+
+    /* ── Checkbox grid ── */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 8px;
+    }
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .check-item:hover {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+    }
+    .check-item.checked {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+    }
+    .check-item input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      margin-top: 2px;
+      accent-color: var(--blue);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .check-item span {
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+    .check-item.checked span {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    /* ── Radio grid ── */
+    .radio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 8px;
+    }
+    .radio-grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @media (max-width: 520px) {
+      .radio-grid.cols-3 { grid-template-columns: 1fr; }
+    }
+    .radio-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--radius);
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .radio-item:hover {
+      border-color: var(--blue);
+      background: var(--blue-pale);
+    }
+    .radio-item input[type="radio"] {
+      width: 15px;
+      height: 15px;
+      margin-top: 2px;
+      accent-color: var(--blue);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .radio-item span {
+      font-size: 13px;
+      color: var(--gray-700);
+      line-height: 1.4;
+    }
+    .radio-item input[type="radio"]:checked + span {
+      color: var(--blue);
+      font-weight: 600;
+    }
+
+    /* ── "Other" inline input after check/radio groups ── */
+    .other-wrap {
+      margin-top: 4px;
+    }
+    .other-wrap input {
+      font-size: 13px;
+      padding: 9px 12px;
+      background: var(--gray-50);
+    }
+
+    /* ── Required asterisk ── */
+    .req { color: var(--red); margin-left: 2px; }
+
+    /* ── Submit card ── */
+    .submit-card {
+      background: var(--navy);
+      border-radius: var(--radius-lg);
+      padding: 40px 28px;
+      text-align: center;
+    }
+    .submit-card h3 {
+      color: var(--white);
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .submit-card p {
+      color: var(--gray-400);
+      font-size: 14px;
+      margin-bottom: 28px;
+      max-width: 440px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-submit {
+      background: var(--blue);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius);
+      padding: 14px 52px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.1s;
+      letter-spacing: 0.02em;
+    }
+    .btn-submit:hover  { background: #1D4ED8; }
+    .btn-submit:active { transform: scale(0.98); }
+
+    /* ── Success banner ── */
+    .success-banner {
+      display: none;
+      background: var(--green-bg);
+      border: 1.5px solid var(--green-border);
+      border-radius: var(--radius);
+      color: var(--green-text);
+      padding: 18px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    /* ── Error state ── */
+    input.error, textarea.error {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px rgba(239,68,68,0.1);
+    }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; }
+      .progress-wrap, .btn-submit, .header-badge { display: none; }
+      .section { box-shadow: none; border: 1px solid var(--gray-200); page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="none" style="width:200px;height:auto;display:block;margin:0 auto 20px;" aria-label="Apex Marketing Agency">
+      <defs>
+        <style>
+          .wordmark { font-family: 'Inter','DM Sans','Arial',sans-serif; font-weight:700; letter-spacing:0.12em; }
+          .tagline  { font-family: 'Inter','DM Sans','Arial',sans-serif; font-weight:400; letter-spacing:0.18em; }
+        </style>
+      </defs>
+      <line x1="18" y1="62" x2="36" y2="14" stroke="#2563EB" stroke-width="5" stroke-linecap="square"/>
+      <line x1="54" y1="62" x2="36" y2="14" stroke="#2563EB" stroke-width="5" stroke-linecap="square"/>
+      <line x1="24" y1="44" x2="48" y2="44" stroke="#2563EB" stroke-width="3.5" stroke-linecap="square"/>
+      <polyline points="54,62 64,38 74,62" stroke="#2563EB" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter" fill="none"/>
+      <line x1="92" y1="16" x2="92" y2="64" stroke="#1E3A5F" stroke-width="1.5"/>
+      <text x="106" y="37" class="wordmark" font-size="18" fill="#FFFFFF">APEX</text>
+      <text x="106" y="58" class="tagline" font-size="11" fill="#2563EB">MARKETING AGENCY</text>
+    </svg>
+  </div>
+  <h1>Client Website Discovery Form</h1>
+  <p class="header-sub">The more detail you share, the better we can build a site that brings in real customers on autopilot.</p>
+  <span class="header-badge">&#9200; About 10–15 minutes</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="success-banner" id="successBanner">
+    Your form has been submitted! We'll review your answers and reach out within 1–2 business days with a custom plan.
+  </div>
+
+  <form id="discoveryForm" novalidate>
+
+    <!-- ── SECTION 1 ── About You & Your Business ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">About You &amp; Your Business</div>
+      </div>
+      <div class="section-body">
+
+        <div class="row-2">
+          <div class="field">
+            <label>Full Name <span class="req">*</span></label>
+            <input type="text" name="full_name" placeholder="First and last name" required />
+          </div>
+          <div class="field">
+            <label>Today's Date</label>
+            <input type="date" name="today_date" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Business Name <span class="req">*</span></label>
+            <input type="text" name="business_name" placeholder="Your business name" required />
+          </div>
+          <div class="field">
+            <label>Your Role / Title</label>
+            <input type="text" name="role" placeholder="Owner, Manager, Director…" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Phone Number <span class="req">*</span></label>
+            <input type="tel" name="phone" placeholder="Best number to reach you" required />
+          </div>
+          <div class="field">
+            <label>Email Address <span class="req">*</span></label>
+            <input type="email" name="email" placeholder="you@yourbusiness.com" required />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Current Website (if any)</label>
+            <input type="url" name="current_website" placeholder="https://www.yourbusiness.com" />
+          </div>
+          <div class="field">
+            <label>Years in Business</label>
+            <input type="text" name="years_in_business" placeholder="How long have you been operating?" />
+          </div>
+        </div>
+
+        <div class="row-2">
+          <div class="field">
+            <label>Business Location / Service Area</label>
+            <input type="text" name="location" placeholder="City, State or region you serve" />
+          </div>
+          <div class="field">
+            <label>Industry</label>
+            <input type="text" name="industry" placeholder="Plumbing, Landscaping, HVAC, Cleaning…" />
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">1</span>In one or two sentences, what does your business do?</div>
+          <span class="hint">Pretend you're explaining it to someone you just met.</span>
+          <textarea name="business_description" placeholder="We help homeowners with…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">2</span>Who are your ideal customers?</div>
+          <span class="hint">Age, income, location, lifestyle, pain points — whatever fits your business.</span>
+          <textarea name="ideal_customers" placeholder="Homeowners aged 35–60, busy professionals who don't have time to…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">3</span>What products or services do you offer? List the top 3–5.</div>
+          <textarea name="services" placeholder="1. &#10;2. &#10;3. &#10;4. &#10;5. "></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">4</span>Which service or product makes you the most money right now?</div>
+          <textarea name="top_service" class="short" placeholder="This helps us know what to put front and center on your site."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 2 ── Goals ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Goals for Your Website</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">5</span>What's the #1 thing you want your new website to do for you?</div>
+          <span class="hint">Check all that apply.</span>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="goals" value="Get more leads / inquiries" /><span>Get more leads / inquiries</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Sell products directly" /><span>Sell products directly (e-commerce)</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Book appointments or consultations" /><span>Book appointments or consultations</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Build credibility & trust" /><span>Build credibility &amp; trust</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Showcase portfolio / past work" /><span>Showcase portfolio / past work</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Rank on Google for my services" /><span>Rank on Google for my services</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Automate customer support / FAQs" /><span>Automate customer support / FAQs</span></label>
+            <label class="check-item"><input type="checkbox" name="goals" value="Grow an email list" /><span>Grow an email list</span></label>
+          </div>
+          <div class="other-wrap">
+            <input type="text" name="goals_other" placeholder="Something else? Describe it here…" />
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">6</span>If your website was wildly successful in 6 months, what would that look like?</div>
+          <span class="hint">Be specific — e.g. "I'm getting 15 new calls a week without any cold outreach."</span>
+          <textarea name="success_vision" placeholder="In 6 months I want to…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">7</span>How many leads or sales per month would make this website "worth it"?</div>
+          <textarea name="leads_target" class="short" placeholder="Give us a number — even a rough one is helpful."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 3 ── Problems ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3</div>
+        <div class="section-title">Problems You're Facing Right Now</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">8</span>What's the biggest problem in your business today?</div>
+          <span class="hint">Be honest — not enough leads, too much manual work, hard to stand out, no time, etc.</span>
+          <textarea name="biggest_problem" class="tall" placeholder="The biggest challenge I'm dealing with is…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">9</span>What's wrong with your current website — or why don't you have one?</div>
+          <textarea name="website_problems" placeholder="It looks outdated / it doesn't show up on Google / I never got around to building one…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">10</span>What tasks do you waste the most time on that a website could handle?</div>
+          <span class="hint">Answering the same questions, taking bookings, sending quotes, following up with leads, etc.</span>
+          <textarea name="time_wasters" placeholder="I spend too much time on…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">11</span>What questions do customers ask you over and over?</div>
+          <span class="hint">These become your FAQ section and chatbot content.</span>
+          <textarea name="repeat_questions" placeholder="People always ask me… / How much does it cost? / Do you serve my area?…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">12</span>What objections stop people from buying from you?</div>
+          <span class="hint">Price concerns, trust, timing, unclear offerings — what makes them hesitate?</span>
+          <textarea name="objections" placeholder="The main reason people don't book is…"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 4 ── Strengths ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">4</div>
+        <div class="section-title">Your Strengths — What Makes You Great</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">13</span>Why do your current customers choose you over someone else?</div>
+          <textarea name="why_choose_you" placeholder="Customers pick us because…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">14</span>What do you do better than anyone else in your industry?</div>
+          <textarea name="better_than_others" placeholder="Where we truly stand out is…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">15</span>What's one thing customers always compliment you on?</div>
+          <textarea name="compliments" class="short" placeholder="Customers always mention…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">16</span>Any awards, certifications, press mentions, or well-known clients we should feature?</div>
+          <textarea name="awards" placeholder="Licensed &amp; insured, BBB A+ rated, featured in [publication], certified by…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">17</span>Do you have testimonials, reviews, or case studies we can use?</div>
+          <span class="hint">Tell us where they live — Google, Yelp, Facebook — or paste them directly here.</span>
+          <textarea name="testimonials" class="tall" placeholder="Yes, we have 5-star reviews on Google at [link] / Here's one: 'Best service I've ever had…'"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 5 ── Weaknesses ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">5</div>
+        <div class="section-title">Your Weaknesses — So We Can Fix Them</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">18</span>What do you feel is weak or missing in your current marketing?</div>
+          <textarea name="marketing_weaknesses" placeholder="We don't have much of an online presence / no consistent way to follow up with leads…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">19</span>Where do you lose customers in your current process?</div>
+          <span class="hint">At the first inquiry? When they see the price? When comparing you to a competitor?</span>
+          <textarea name="lose_customers" placeholder="Most people drop off when…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">20</span>Are there services you offer that customers don't know about?</div>
+          <textarea name="unknown_services" class="short" placeholder="A lot of people don't realize we also offer…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">21</span>What do you wish you had more time, money, or knowledge to do?</div>
+          <textarea name="wishes" placeholder="If I had more time I'd focus on… / I wish I could afford to…"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 6 ── Competitors ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">6</div>
+        <div class="section-title">Your Competitors</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">22</span>List 2–3 direct competitors (with websites if you know them).</div>
+          <textarea name="competitors" placeholder="1. Competitor Name — theirwebsite.com&#10;2. Competitor Name — theirwebsite.com&#10;3. Competitor Name — theirwebsite.com"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">23</span>What do your competitors do BETTER than you?</div>
+          <span class="hint">Don't hold back — we'll use this to close the gap.</span>
+          <textarea name="competitors_better" placeholder="They have a nicer website / they rank higher on Google / they seem more professional online…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">24</span>What do your competitors do WORSE than you?</div>
+          <span class="hint">This is your edge. We'll make sure your site highlights it.</span>
+          <textarea name="competitors_worse" placeholder="Their response time is slow / they have bad reviews / they're more expensive for less quality…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">25</span>Any websites — in any industry — whose look or feel you love?</div>
+          <span class="hint">Paste links and tell us what you like about them.</span>
+          <textarea name="websites_love" placeholder="https://example.com — I love how simple and clean it feels&#10;https://example2.com — great photography and easy to navigate"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">26</span>Any websites you dislike or want to avoid looking like?</div>
+          <textarea name="websites_hate" class="short" placeholder="Anything cluttered, outdated, or hard to read on a phone — we want the opposite."></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 7 ── Brand ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">7</div>
+        <div class="section-title">Brand, Look &amp; Feel</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">27</span>Describe your brand in 3–5 words.</div>
+          <span class="hint">Think about the feeling you want customers to get.</span>
+          <input type="text" name="brand_words" placeholder="Trustworthy, local, modern, friendly…" />
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">28</span>Do you have a logo, brand colors, or fonts already?</div>
+          <span class="hint">You can email files to us after submitting — just describe them here.</span>
+          <textarea name="brand_assets" class="short" placeholder="Yes, I have a logo (will email it). Our colors are navy blue and white. No specific fonts yet."></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">29</span>Which style fits your business best? (pick one)</div>
+          <div class="radio-grid">
+            <label class="radio-item"><input type="radio" name="style" value="Clean & minimal" /><span>Clean &amp; minimal (lots of white space)</span></label>
+            <label class="radio-item"><input type="radio" name="style" value="Bold & modern" /><span>Bold &amp; modern (big text, strong colors)</span></label>
+            <label class="radio-item"><input type="radio" name="style" value="Warm & friendly" /><span>Warm &amp; friendly (inviting, personal)</span></label>
+            <label class="radio-item"><input type="radio" name="style" value="Professional & corporate" /><span>Professional &amp; corporate (trust-first)</span></label>
+            <label class="radio-item"><input type="radio" name="style" value="Luxury & premium" /><span>Luxury &amp; premium (dark, elegant)</span></label>
+            <label class="radio-item"><input type="radio" name="style" value="Fun & playful" /><span>Fun &amp; playful (bold, full of personality)</span></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 8 ── Pages & Content ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">8</div>
+        <div class="section-title">Pages &amp; Content</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">30</span>Which pages do you want on your site? (check all that apply)</div>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="pages" value="Home" /><span>Home</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="About / Our Story" /><span>About / Our Story</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Services or Products" /><span>Services or Products</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Pricing" /><span>Pricing</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Portfolio / Gallery" /><span>Portfolio / Gallery</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Testimonials / Reviews" /><span>Testimonials / Reviews</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="FAQ" /><span>FAQ</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Blog / Resources" /><span>Blog / Resources</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Contact" /><span>Contact</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Booking / Scheduling" /><span>Booking / Scheduling</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Shop / E-commerce" /><span>Shop / E-commerce</span></label>
+            <label class="check-item"><input type="checkbox" name="pages" value="Client Login / Portal" /><span>Client Login / Portal</span></label>
+          </div>
+          <div class="other-wrap">
+            <input type="text" name="pages_other" placeholder="Need something else? List it here…" />
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">31</span>Do you have content ready (photos, copy, video) or do you need us to create it?</div>
+          <textarea name="content_readiness" placeholder="I have some photos but no written copy / I need everything created from scratch / I have a logo and a few images…"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 9 ── Lead Gen & Automation ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">9</div>
+        <div class="section-title">Lead Generation &amp; Automation</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">32</span>How do you want people to contact or buy from you? (check all)</div>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Contact form" /><span>Contact form → email notification</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Phone / click-to-call" /><span>Phone call / click-to-call</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Text / SMS" /><span>Text message / SMS</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Online booking" /><span>Online booking / calendar</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Live chat or chatbot" /><span>Live chat or AI chatbot</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="E-commerce checkout" /><span>Direct purchase / checkout</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Quote request form" /><span>Request a quote form</span></label>
+            <label class="check-item"><input type="checkbox" name="contact_methods" value="Email newsletter" /><span>Email newsletter signup</span></label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">33</span>Would you like an AI chatbot on your site to answer questions 24/7?</div>
+          <div class="radio-grid">
+            <label class="radio-item"><input type="radio" name="chatbot" value="Yes — answer questions & capture leads" /><span>Yes — answer questions &amp; capture leads</span></label>
+            <label class="radio-item"><input type="radio" name="chatbot" value="Yes — after hours only" /><span>Yes — but only after business hours</span></label>
+            <label class="radio-item"><input type="radio" name="chatbot" value="Not sure, tell me more" /><span>Not sure — tell me more</span></label>
+            <label class="radio-item"><input type="radio" name="chatbot" value="No" /><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">34</span>Which automations would save you the most time? (check all)</div>
+          <div class="check-grid">
+            <label class="check-item"><input type="checkbox" name="automations" value="Auto-reply when form is submitted" /><span>Auto-reply when a form is submitted</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Appointment booking + reminders" /><span>Appointment booking + reminders</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Lead follow-up sequence" /><span>Lead follow-up sequence (7–30 days)</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Review request automation" /><span>Review requests after a job is done</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Abandoned quote follow-up" /><span>Abandoned quote follow-up</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="CRM integration" /><span>CRM integration (HubSpot, GoHighLevel…)</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Payment collection" /><span>Online payment collection / invoicing</span></label>
+            <label class="check-item"><input type="checkbox" name="automations" value="Monthly analytics report" /><span>Monthly analytics report to inbox</span></label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">35</span>What could you give visitors for free in exchange for their email address?</div>
+          <span class="hint">A lead magnet — e.g. free quote, checklist, mini guide, discount, free consultation.</span>
+          <textarea name="lead_magnet" placeholder="A free estimate / a maintenance checklist / 10% off their first service…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">36</span>Do you currently run any paid ads? (Google, Meta, TikTok, etc.)</div>
+          <textarea name="ads" class="short" placeholder="No, not yet / Yes — we run Google Ads and want the site to connect with them…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">37</span>Which tools do you already use that the website should connect to?</div>
+          <span class="hint">e.g. Stripe, Square, Calendly, Mailchimp, HubSpot, GoHighLevel, QuickBooks, Shopify.</span>
+          <textarea name="existing_tools" placeholder="We use Calendly for bookings and Square for payments…"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 10 ── Google ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">10</div>
+        <div class="section-title">Getting Found on Google</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">38</span>What would someone type into Google to find a business like yours?</div>
+          <span class="hint">Think like your customer, not your business name.</span>
+          <textarea name="google_searches" placeholder="'[your service] near me' / '[your service] in [your city]' / 'best [your service] [your city]'…"></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">39</span>What cities, zip codes, or regions do you serve?</div>
+          <textarea name="service_areas" class="short" placeholder="List every area you cover — the more specific, the better for local SEO."></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">40</span>Do you have a Google Business Profile set up?</div>
+          <div class="radio-grid cols-3">
+            <label class="radio-item"><input type="radio" name="google_profile" value="Yes" /><span>Yes, it's active</span></label>
+            <label class="radio-item"><input type="radio" name="google_profile" value="No" /><span>No, I don't have one</span></label>
+            <label class="radio-item"><input type="radio" name="google_profile" value="Not sure" /><span>Not sure</span></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 11 ── Budget & Timeline ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">11</div>
+        <div class="section-title">Budget &amp; Timeline</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">41</span>When do you want this website live?</div>
+          <div class="radio-grid">
+            <label class="radio-item"><input type="radio" name="timeline" value="ASAP (within 2 weeks)" /><span>ASAP — within 2 weeks</span></label>
+            <label class="radio-item"><input type="radio" name="timeline" value="Within 1 month" /><span>Within 1 month</span></label>
+            <label class="radio-item"><input type="radio" name="timeline" value="Within 2–3 months" /><span>Within 2–3 months</span></label>
+            <label class="radio-item"><input type="radio" name="timeline" value="Flexible" /><span>Flexible — quality over speed</span></label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">42</span>What's your budget range for this project?</div>
+          <div class="radio-grid">
+            <label class="radio-item"><input type="radio" name="budget" value="Under $1,000" /><span>Under $1,000</span></label>
+            <label class="radio-item"><input type="radio" name="budget" value="$1,000 – $3,000" /><span>$1,000 – $3,000</span></label>
+            <label class="radio-item"><input type="radio" name="budget" value="$3,000 – $7,000" /><span>$3,000 – $7,000</span></label>
+            <label class="radio-item"><input type="radio" name="budget" value="$7,000 – $15,000" /><span>$7,000 – $15,000</span></label>
+            <label class="radio-item"><input type="radio" name="budget" value="$15,000+" /><span>$15,000+</span></label>
+            <label class="radio-item"><input type="radio" name="budget" value="Not sure yet" /><span>Not sure — show me options</span></label>
+          </div>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">43</span>Are you interested in ongoing maintenance, hosting, or monthly updates?</div>
+          <div class="radio-grid cols-3">
+            <label class="radio-item"><input type="radio" name="ongoing" value="Yes" /><span>Yes, definitely</span></label>
+            <label class="radio-item"><input type="radio" name="ongoing" value="No" /><span>No, just the build</span></label>
+            <label class="radio-item"><input type="radio" name="ongoing" value="Tell me more" /><span>Tell me more first</span></label>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── SECTION 12 ── Anything Else ── -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">12</div>
+        <div class="section-title">Anything Else</div>
+      </div>
+      <div class="section-body">
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">44</span>Is there anything else we should know about your business, customers, or goals?</div>
+          <textarea name="anything_else" class="tall" placeholder="Anything that didn't fit above — context, constraints, dreams, concerns. The more you share, the better we can help."></textarea>
+        </div>
+
+        <div class="q-block">
+          <div class="q-label"><span class="q-num">45</span>How did you hear about us?</div>
+          <textarea name="referral_source" class="short" placeholder="Google search, a friend or colleague referred me, saw you on social media, direct outreach…"></textarea>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── Submit ── -->
+    <div class="submit-card">
+      <h3>You're all set!</h3>
+      <p>We'll review your answers and follow up within 1–2 business days with a custom plan built around your goals.</p>
+      <button type="submit" class="btn-submit">Submit My Discovery Form &rarr;</button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  const form      = document.getElementById('discoveryForm');
+  const fillBar   = document.getElementById('progressFill');
+  const banner    = document.getElementById('successBanner');
+
+  // ── Progress bar ──
+  function updateProgress() {
+    const fields = form.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], input[type="url"], textarea');
+    let filled = 0;
+    fields.forEach(el => { if (el.value.trim()) filled++; });
+    fillBar.style.width = Math.min(100, Math.round((filled / fields.length) * 100)) + '%';
+  }
+  form.addEventListener('input', updateProgress);
+  form.addEventListener('change', updateProgress);
+
+  // ── Checkbox card highlight ──
+  document.querySelectorAll('.check-item').forEach(item => {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb.addEventListener('change', () => item.classList.toggle('checked', cb.checked));
+  });
+
+  // ── Form submit ──
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Clear previous errors
+    form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+
+    // Validate required fields
+    const required = form.querySelectorAll('[required]');
+    let firstError = null;
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        field.classList.add('error');
+        if (!firstError) firstError = field;
+      }
+    });
+    if (firstError) {
+      firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstError.focus();
+      return;
+    }
+
+    // Collect form data
+    const data = {};
+    new FormData(form).forEach((val, key) => {
+      if (data[key] !== undefined) {
+        data[key] = [].concat(data[key], val);
+      } else {
+        data[key] = val;
+      }
+    });
+
+    // TODO: replace console.log with a fetch() to your backend / Formspree / Zapier endpoint
+    console.log('Discovery Form Submission:', JSON.stringify(data, null, 2));
+
+    form.style.display = 'none';
+    banner.style.display = 'block';
+    fillBar.style.width = '100%';
+    banner.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // ── Auto-fill today's date ──
+  const dateField = form.querySelector('input[name="today_date"]');
+  if (dateField) {
+    dateField.value = new Date().toISOString().split('T')[0];
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+{
+  "kpis": {
+    "total_leads": 7,
+    "qualified": 4,
+    "active_contracts": 1,
+    "signed": 0
+  },
+  "leads": [
+    {
+      "business_name": "Valley Pro Plumbing",
+      "niche": "Plumber",
+      "score": "A",
+      "status": "outreach",
+      "last_contact": "2026-04-20"
+    },
+    {
+      "business_name": "Green Thumb Landscaping",
+      "niche": "Landscaper",
+      "score": "A",
+      "status": "qualified",
+      "last_contact": "2026-04-19"
+    },
+    {
+      "business_name": "Fresno HVAC Experts",
+      "niche": "HVAC",
+      "score": "B",
+      "status": "qualified",
+      "last_contact": "2026-04-18"
+    },
+    {
+      "business_name": "Shine Mobile Detailing",
+      "niche": "Mobile Detailer",
+      "score": "A",
+      "status": "booked",
+      "last_contact": "2026-04-17"
+    },
+    {
+      "business_name": "Madera Cleaning Co.",
+      "niche": "House Cleaner",
+      "score": "B",
+      "status": "qualified",
+      "last_contact": "2026-04-16"
+    },
+    {
+      "business_name": "Cruz Auto Repair",
+      "niche": "Auto Mechanic",
+      "score": "C",
+      "status": "new",
+      "last_contact": "2026-04-21"
+    },
+    {
+      "business_name": "Sunset Fence Co.",
+      "niche": "Contractor",
+      "score": "B",
+      "status": "disqualified",
+      "last_contact": "2026-04-14"
+    }
+  ],
+  "outreach": [
+    {
+      "lead_name": "Valley Pro Plumbing",
+      "channel": "email",
+      "date": "2026-04-20",
+      "status": "pending"
+    },
+    {
+      "lead_name": "Valley Pro Plumbing",
+      "channel": "sms",
+      "date": "2026-04-20",
+      "status": "pending"
+    },
+    {
+      "lead_name": "Green Thumb Landscaping",
+      "channel": "email",
+      "date": "2026-04-19",
+      "status": "draft"
+    }
+  ],
+  "contracts": [
+    {
+      "client": "Shine Mobile Detailing",
+      "status": "draft",
+      "amount": "600",
+      "date": "2026-04-21"
+    }
+  ],
+  "activity": [
+    {
+      "entry": "Lead qualified: Valley Pro Plumbing — Score A, outreach drafted",
+      "time": "Today 10:14 AM"
+    },
+    {
+      "entry": "Call booked with Shine Mobile Detailing — Apr 23 @ 2:00 PM",
+      "time": "Today 9:47 AM"
+    },
+    {
+      "entry": "Contract draft created for Shine Mobile Detailing — $600 Starter",
+      "time": "Today 9:50 AM"
+    },
+    {
+      "entry": "Lead added: Cruz Auto Repair — awaiting qualification",
+      "time": "Today 8:30 AM"
+    },
+    {
+      "entry": "Outreach drafted for Green Thumb Landscaping — email ready for review",
+      "time": "Yesterday 4:12 PM"
+    }
+  ]
+}
