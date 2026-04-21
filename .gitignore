@@ -1,4 +1,4 @@
-# Environment & secrets — never commit these
+# Environment & secrets — never commit
 .env
 .env.*
 *.env
@@ -6,22 +6,33 @@
 *.pem
 *credentials*
 *secret*
-
-# Local Claude Code settings
 settings.local.json
 
-# macOS clutter
+# macOS
 .DS_Store
 **/.DS_Store
 
-# Zip/binary archives
+# Archives
 *.zip
 
-# Node (if added later)
+# Node / Python
 node_modules/
 npm-debug.log*
-
-# Python (if added later)
 __pycache__/
 *.pyc
 .venv/
+
+# Private business operations — local only, not for public repo
+CLAUDE.md
+MASTER_PROMPT.md
+.claude/
+appointments/
+clients/
+contracts/
+dashboard/
+docs/
+leads/
+logs/
+outreach/
+scripts/
+templates/
